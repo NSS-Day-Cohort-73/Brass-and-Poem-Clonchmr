@@ -142,7 +142,7 @@ void DeleteProduct(List<Product> products, List<ProductType> productTypes)
     }
 }
 
-void AddProduct(List<Product> products, List<ProductType> productTypes) //This works but need to clean up the formatting of the console.writeline some
+void AddProduct(List<Product> products, List<ProductType> productTypes) 
 {
     Console.WriteLine("Add a new product:");
     
