@@ -96,12 +96,11 @@ while (choice != "5")
 
 void DisplayMenu()
 {
-   Console.WriteLine(@"
-   1. Display all products
-   2. Delete a product
-   3. Add a new product
-   4. Update a product
-   5. Exit");
+   Console.WriteLine(@"1. Display all products
+2. Delete a product
+3. Add a new product
+4. Update product properties
+5. Exit");
 }
 
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
@@ -218,10 +217,12 @@ void UpdateProduct(List<Product> products, List<ProductType> productTypes)
             Console.WriteLine("");
             Console.WriteLine("Update name:");
             string updatedProductName = Console.ReadLine().Trim();
-            if (updatedProductName != "")
+            if (String.IsNullOrWhiteSpace(updatedProductName))
             {
-                productToUpdate.Name = updatedProductName;
+                updatedProductName = productToUpdate.Name;
             }
+
+            productToUpdate.Name = updatedProductName;
 
             Console.WriteLine("Update price:");
             try
@@ -245,9 +246,14 @@ void UpdateProduct(List<Product> products, List<ProductType> productTypes)
                 Console.WriteLine($"{i + 1}. {productTypes[i].Title}");
             }
             string updatedProductType = Console.ReadLine().Trim();
+
+             if (String.IsNullOrWhiteSpace(updatedProductType))
+                {
+                    return;
+                }
+
              if (int.Parse(updatedProductType) >= 1 && int.Parse(updatedProductType) <= productTypes.Count)
              {
-                 if (updatedProductType != "")
                 productToUpdate.ProductTypeId = int.Parse(updatedProductType);
              }
              else
